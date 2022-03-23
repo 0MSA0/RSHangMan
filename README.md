@@ -1,0 +1,2 @@
+# RSHangMan
+Discord hangman bot
