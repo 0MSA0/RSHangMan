@@ -29,10 +29,13 @@ game = None
 
 @bot.command(aliases=["ng"])
 async def new_game(ctx):
+    """
+    Starts a new game.
+    """
     global game
     game = logic.Board()
     print(game)
-    await ctx.send(str(game))
+    await ctx.send("```\n" + str(game) + "```")
 
 @bot.command()
 async def guess(ctx, *args):
@@ -50,7 +53,7 @@ async def guess(ctx, *args):
                 guess_str += args[wordnr] + ' '
             guess_str += args[len(args) - 1]
             is_in_solution = logic.check_input(guess_str, game)
-            if is_in_solution == True:
+            if is_in_solution:
                 output_str = 'Oui'
                 if game.status == logic.StatusType.win:
                     output_str = "Big oui"
@@ -64,6 +67,9 @@ async def guess(ctx, *args):
 @bot.command(aliases=["sh"])
 @commands.is_owner()
 async def shutdown(ctx):
+    """
+    Shuts down the bot.
+    """
     await ctx.send("Bye bye :D")
     await bot.close()
     print("Bot shutting down")
