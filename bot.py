@@ -54,13 +54,13 @@ async def guess(ctx, *args):
             guess_str += args[len(args) - 1]
             is_in_solution = logic.check_input(guess_str, game)
             if is_in_solution:
-                output_str = 'Oui'
+                output_str = "```Your guess is right.\n %s```" %(str(game))
                 if game.status == logic.StatusType.win:
-                    output_str = "Big oui"
+                    output_str = "```You guessed the word.\n %s```" %(str(game))
             else:
-                output_str = 'Nö'
+                output_str = "```Your guess was wrong.\n %s```" %(str(game))
                 if game.status == logic.StatusType.lose:
-                    output_str = "Big nöö"    
+                    output_str = "```You couldn't guess the word.\n %s```" %(str(game))    
     await ctx.send(output_str)
 
 
